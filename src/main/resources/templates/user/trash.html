@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Layout</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container-fluid">
+			<div class="d-sm-flex align-items-center justify-content-between mb-4">
+				<h1 class="h5 mb-0 text-gray-800">Trash</h1>					
+			</div>
+
+            <h6>Folders</h6>
+			<div class="row">
+				<div class="col-xl-3 col-md-6 mb-4" th:each="folder : ${folderList}">
+					<a href="#" class="btn btn-secondary btn-icon-split"> 
+						<span class="icon text-white-50">
+							<i class="fas fa-folder fa-1x text-gray-100"></i>
+						</span> 
+						<span class="text" style="width: 202px; height: 40px;" th:text="${folder.name}"></span>	                
+					</a>					
+					<a class="btn btn-light btn-circle btn-sm" title="restore" th:href="@{'/user/restore/folder/' + ${folder.id}}">
+	                    <i class="fa fa-refresh fa-spin fa-sm" style="color: red;"></i>
+	                </a>	                	                										
+				</div>
+			</div>
+			
+			<h6>Files</h6>
+			<div class="row">
+				<div class="col-xl-3 col-md-6 mb-4" th:each="content : ${contentList}">
+		            <div class="card border-left-secondary shadow h-100 py-2">
+			            <div class="card-body">
+				            <div class="row no-gutters align-items-center">
+					            <div class="col mr-2">
+						            <div class="text-sm font-weight-bold text-muted mb-1" th:text="${content.name}"></div>
+						            <div class="text-xs font-italic mb-0 text-gray-800" th:text="${content.date}"></div>						            
+					            </div>				            
+					             <a class="col-auto" href="#" th:switch="${content.format}">
+						            <i th:case="'png'" 
+						               class="fas fa-image fa-2x text-danger-300" style="color: #ed0909;"></i>
+						            <i th:case="'jpg'" 
+						               class="fas fa-image fa-2x text-danger-300" style="color: #ed0909;"></i>
+						            <i th:case="'jpeg'" 
+						               class="fas fa-image fa-2x text-danger-300" style="color: #ed0909;"></i>
+						            <i th:case="'docx'" 
+						               class="fas fa-file-word fa-2x text-danger-300"></i>
+						            <i th:case="'xlsx'" 
+						               class="fas fa-file-excel fa-2x text-danger-300" style="color: green;"></i>
+						            <i th:case="'xls'" 
+						               class="fas fa-file-excel fa-2x text-danger-300" style="color: green;"></i>
+						            <i th:case="'pdf'" 
+						               class="fas fa-file-pdf fa-2x text-danger-300" style="color: #ed0909;"></i>
+						            <i th:case="'ppt'" 
+						               class="fas fa-file-powerpoint fa-2x text-danger-300" style="color: #e33d0e;"></i>
+						            <i th:case="*" 
+						               class="fas fa-file-archive fa-2x text-danger-300" style="color: #54524d;"></i>
+					            </a>
+				            </div>					            			            			            
+			            </div>		            
+		            </div>			            
+		            <a class="btn btn-light btn-circle btn-sm" title="restore" th:href="@{'/user/restore/content/' + ${content.id}}">
+	                    <i class="fa fa-refresh fa-spin fa-sm" style="color: red;"></i>
+	                </a>	                	            
+	            </div>
+			</div>		
+		</div>
+				
+	</div>
+</body>
+</html>

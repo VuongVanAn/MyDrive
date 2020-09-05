@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Layout</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container-fluid">			
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">
+						<i class="fas fa-fw fa-share-square"></i> Shared with me
+					</h6>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table-bordered" id="dataTable"
+							style="width: 100%;" cellspacing="0">
+							<thead>
+								<tr>
+									<th>File Name</th>
+									<th>Full Name</th>
+									<th>Date</th>									
+								</tr>
+							</thead>
+							<tfoot>
+								<tr>
+									<th>File Name</th>
+									<th>Full Name</th>								
+									<th>Date</th>									
+								</tr>
+							</tfoot>
+							<tbody>
+								<tr th:each="item : ${diaryList}">
+									<td th:text="${item.fileName}"></td>
+									<td th:text="${item.fullName}"></td>
+									<td th:text="${item.date}"></td>																
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+</body>
+</html>
